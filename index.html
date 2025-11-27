@@ -1,13 +1,256 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ca">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ej de Clase</title>
+    <title>Portafolis Llibreries 3D</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #aeb5f8;
+        }
+        header {
+            background: #000000;
+            color: #fff;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            padding-right: 30px;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+        }
+        .container {
+            text-align: center;
+            margin-top: 80px; /* Espacio para evitar que el contenido quede debajo del header */
+        }
+
+        .main-image {
+            width: 100%;
+            height: auto;
+        }
+
+        .info {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            text-align: left;
+        }
+
+        .info a {
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+            color: #074689;
+            text-align: center;
+        }
+
+        .info a:hover {
+            text-decoration: underline;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: center; /* Centrar los cuadros horizontalmente */
+            flex-wrap: wrap; /* Permitir que los cuadros se ajusten en varias filas */
+            gap: 20px; /* Espaciado uniforme entre los cuadros */
+            padding: 20px;
+        }
+
+        .box {
+            display: flex;
+            flex-direction: column;
+            background: #5862be;
+            padding: 15px;
+            margin: 10px;
+            width: 300px; /* Ancho consistente para los cuadros */
+            align-items: center;
+            text-align: center;
+            border: 2px solid #000000;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .box img {
+            width: 100%; /* Ajustar la imagen al ancho del cuadro */
+            height: auto;
+            cursor: pointer;
+        }
+
+        .about {
+            padding: 20px;
+            text-align: center;
+            background: #ddd;
+        }
+
+        .about img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-top: 10px;
+        }
+
+        .about p {
+            max-width: 600px;
+            margin: auto;
+            padding-top: 10px;
+        }
+
+        .about button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .about button:hover {
+            background-color: #333;
+        }
+
+        footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding-right: 15px;
+            }
+
+            .flex-container {
+                flex-direction: column; /* Cambiar a una sola columna en pantallas pequeñas */
+                align-items: center;
+            }
+
+            .box {
+                width: 90%; /* Ajustar el ancho de los cuadros en pantallas pequeñas */
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Marc Cepeda</h1>
-    <a href="./Ej1/registre.html">Botiga</a>
+    <header>
+        <nav>
+            <a href="#introduccio">Introducció</a>
+            <a href="#exercicis">Exercicis</a>
+            <a href="#sobre-mi">Sobre mi</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <img src="./Ej1/fotos/estanteria.jpg" alt="Imatge Principal" class="main-image">
+
+        <div class="info" id="introduccio">
+            <h2>PORTAFOLIS de Marques</h2>
+            <p>A continuació es mostren els diferents exercicis realitzats amb diverses llibreries 3D al llarg del curs de Desenvolupament d'Aplicacions Web.</p>
+            <a href="https://github.com/Marquitus534xd/Marcas_html" target="_blank">Visita el GitHub d'aquest projecte</a>
+        </div>
+
+        <div class="flex-container" id="exercicis">
+            <div class="box">
+                <img src="./Ej1/fotos/logo.png" alt="Imatge 1" onclick="location.href='./Ej1/registre.html'">
+                <div>
+                    <h3>Pagina Web adopció</h3>
+                    <p>Un petit exercici de una pagina web de tema lliure</p>     
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 2" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 3" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 4" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>     
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 5" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 6" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 8" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 9" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./Ej1/fotos/trabajando.png" alt="Imatge 11" onclick="location.href=''">
+                <div>
+                    <h3>Working</h3>
+                    <p>Working</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about" id="sobre-mi">
+            <h2>Marc Cepeda Vivas</h2>
+            <img src="./Ej1/fotos/perfil.jpg" alt="Foto de perfil">
+            <p>Estudiant de DAM del cicle formatiu de Grau Superior en Desarollo de aplicacions.</p>
+            <p>M'apassiona la tecnologia i la informàtica, especialment tot el que té a veure amb la configuració, el manteniment i la seguretat dels sistemes informàtics.</p>
+            <p>Durant la meva formació, he adquirit coneixements en hardware, xarxes, sistemes operatius i administració de servidors.
+                M'agrada treballar en equip i solucionar problemes tècnics de manera eficient.
+                Estic motivat per continuar aprenent i aplicar els meus coneixements en un entorn professional.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 El Meu Lloc Web</p>
+    </footer>
 </body>
 </html>
