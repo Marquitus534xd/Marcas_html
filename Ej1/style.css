@@ -57,7 +57,7 @@ li a:hover {
   background-color: #b7db8f;
 }
 
-#perro1, #perro2, #perro3, #perro4 {
+#perro1, #perro2, #perro3, #perro4, #perro5 {
   border: 2px solid #c7d9a4;
   background-color: #e9f3d0;
   border-radius: 10px;
@@ -121,5 +121,43 @@ color:#3c5d2d;
 
 #login:hover{
 background:#0056b3;
+}
+.btn-adoptame {
+  background-color: #a9cf77;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  transition: 0.3s ease;
+  display: inline-block;
+}
+.btn-adoptame:hover {
+  background-color: #8fba63;
+  cursor: pointer;
+}
+
+#productos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+.producte img {
+    width: 15%;
+    height: 15%;
+}
+
+#serveis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+.servei img {
+    width: 15%;
+    height: 15%;
 }
 

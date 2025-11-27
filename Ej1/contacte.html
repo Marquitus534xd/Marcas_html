@@ -8,7 +8,6 @@
   </head>
 
   <body>
-    <!-- HEADER -->
     <header>
       <div id="logo">
         <img src="fotos/logo.png" alt="Clemente" width="5%" height="5%">
@@ -19,64 +18,76 @@
     
     <nav id="Apartats">
       <li><a href="./principi.html">Inici</a></li>
-      <li><a href="#">Productes</a></li>
-      <li><a href="#">Serveis</a></li>
+      <li><a href="./productes.html">Productes</a></li>
+      <li><a href="./serveis.html">Serveis</a></li>
       <li><a href="./contacte.html">Contacte</a></li>
     </nav>
-    <body>	
-	<div class="contact_form">
 
-		<div class="formulario">			
-      <h1>Formulario de contacto</h1>
-				<h3>Escríbenos y en breve los pondremos en contacto contigo</h3>
+    <div class="contact_form">
 
+      <div class="formulario">			
+        <h1>Formulario de contacto</h1>
+        <h3>Escríbenos y en breve los pondremos en contacto contigo</h3>
 
-					<form action="submeter-formulario.php" method="post">				
+        <form action="submeter-formulario.php" method="post">				
 
-						
-								<p>
-									<label for="nombre" class="colocar_nombre">Nombre
-										<span class="obligatorio">*</span>
-									</label>
-										<input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
-								</p>
-							
-								<p>
-									<label for="email" class="colocar_email">Email
-										<span class="obligatorio">*</span>
-									</label>
-										<input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
-								</p>
-						
-								<p>
-									<label for="telefone" class="colocar_telefono">Teléfono
-									</label>
-										<input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
-								</p>				
-							
-								<p>
-									<label for="asunto" class="colocar_asunto">Asunto
-										<span class="obligatorio">*</span>
-									</label>
-										<input type="text" name="introducir_asunto" id="assunto" required="obligatorio" placeholder="Escribe un asunto">
-								</p>		
-							
-								<p>
-									<label for="mensaje" class="colocar_mensaje">Mensaje
-										<span class="obligatorio">*</span>
-									</label>                     
-                               		  <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
-                               	</p>	  								
-							
-								<button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+          <p>
+            <label for="nombre" class="colocar_nombre">Nombre
+              <span class="obligatorio">*</span>
+            </label>
+            <input type="text" name="introducir_nombre" id="nombre" required="obligatorio" placeholder="Escribe tu nombre">
+          </p>
 
-								<p class="aviso">
-								</p>					
-						
-					</form>
-		</div>	
-	</div>
+          <p>
+            <label for="email" class="colocar_email">Email
+              <span class="obligatorio">*</span>
+            </label>
+            <input type="email" name="introducir_email" id="email" required="obligatorio" placeholder="Escribe tu Email">
+          </p>
 
-</body>
+          <p>
+            <label for="telefone" class="colocar_telefono">Teléfono
+            </label>
+            <input type="tel" name="introducir_telefono" id="telefono" placeholder="Escribe tu teléfono">
+          </p>
+          <p>
+            <label for="pais" class="colocar_pais">País
+              <span class="obligatorio">*</span>
+            </label>
+
+            <select name="seleccionar_pais" id="pais" required="obligatorio">
+              <option value="">Selecciona tu país</option>
+              <option value="España">España</option>
+              <option value="Francia">Francia</option>
+              <option value="Italia">Italia</option>
+              <option value="Alemania">Alemania</option>
+              <option value="Argentina">Argentina</option>
+              <option value="México">México</option>
+              <option value="Chile">Chile</option>
+              <option value="Otro">Otro</option>
+            </select>
+          </p>
+          <p>
+            <label for="asunto" class="colocar_asunto">Asunto
+              <span class="obligatorio">*</span>
+            </label>
+            <input type="text" name="introducir_asunto" id="assunto" required="obligatorio" placeholder="Escribe un asunto">
+          </p>
+
+          <p>
+            <label for="mensaje" class="colocar_mensaje">Mensaje
+              <span class="obligatorio">*</span>
+            </label>                     
+            <textarea name="introducir_mensaje" class="texto_mensaje" id="mensaje" required="obligatorio" placeholder="Deja aquí tu comentario..."></textarea> 
+          </p>
+
+          <button type="submit" name="enviar_formulario" id="enviar"><p>Enviar</p></button>
+
+          <p class="aviso"></p>
+
+        </form>
+      </div>	
+    </div>
+
+  </body>
 </html>
-
