@@ -1,0 +1,79 @@
+#titol {
+    display: block;
+    margin: 0 auto; /* centra horizontalmente */
+    letter-spacing: 6px;
+}
+
+.banner {
+    text-align: center;
+    padding: 50px;
+    background-color: #333333;
+}
+
+#dalt {
+    padding: 80px;
+    display: flex;
+    justify-content: center; /* centra horizontalmente */
+    align-items: center;     /* opcional, centra verticalmente si quieres */
+}
+
+
+header  {
+    background-image: url('./fotos/guernica.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.main-image {
+    width: 100%;
+    height: auto;
+}
+.descripcion {
+    margin: 20px;
+    font-size: 20px;
+    text-align: justify;
+}
+.obres {
+    margin: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+body {
+  background: #eed29d;
+}
+.obres .fotos img:hover {
+    margin: 20px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+
+.titulo { text-align: center; margin-bottom: 30px; }
+
+.galeria {
+  column-count: 5;
+  column-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  padding: 80px;
+  gap: 20px;
+  text-align: center;
+
+  align-items: start; 
+}
+
+.item { overflow: hidden;
+   background: #d9b47c;  padding: 5px;
+    border-radius: 6px; 
+  } 
+
+.item img { width: 100%; height: auto;
+   display: block; object-fit: contain;
+    border-radius: 4px; 
+   } 
+   
+.item:hover  { transform: scale(1.50);
+   box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    z-index: 5; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+
