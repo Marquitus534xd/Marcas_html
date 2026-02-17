@@ -1,0 +1,321 @@
+body {
+    margin: 0;
+    background-color: rgb(190, 236, 176);
+}
+
+/* Barra */
+.barra {
+    width: 100%;
+    height: 200px; /* ajusta la altura que quieras */
+    overflow: hidden;
+}
+
+/* Imagen */
+.barra img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* hace que la imagen cubra todo el recuadro */
+}
+
+#Apartats {
+  display: flex;
+  border-style: none;
+  font-size: 20px;
+  list-style: none;
+  padding: 0.9%;
+  flex-wrap: wrap;
+  background-color: rgb(111, 190, 95);
+  justify-content: space-around;
+  margin: 0;
+}
+li a {
+  background-color: #dcedc1;
+  border: 2px solid #7ca64c;
+  padding: 10%;
+  text-decoration: none;
+  margin: 0;
+  border-radius: 8px;
+  color: #2b3a1d;
+  transition: background-color 0.3s ease;
+}
+
+li a:hover {
+  background-color: #b7db8f;
+}
+
+p {
+    font-size: 20px;
+    text-align: center;
+    margin: 10px;
+}
+h2 {
+    text-align: center;
+    margin: 20px;
+}
+
+
+#principal {
+    display: block;
+    margin: 20px auto;
+    width: 50%;
+    height: 500px;
+    object-fit: cover;
+}
+
+
+.galeria {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px;
+}
+
+
+.item {
+    position: relative;
+    width: 380px;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.overlay h3 {
+    font-size: 26px;
+    font-weight: bold;
+    margin: 0;
+    padding: 15px;
+}
+
+.item:hover .overlay {
+    opacity: 1;
+}
+
+.item:hover img {
+    transform: scale(1.1);
+}
+
+
+/* Estilos para el menú de navegación */
+#Apartats a {
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+}
+
+#Apartats a.active {
+  background-color: #6fd172;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+
+
+/* ===== SOLO PÁGINA FOTOS 3D ===== */
+
+/* Sobrescribimos galeria SOLO aquí */
+.galeria {
+  width: 90%;
+  margin: 40px auto;
+}
+
+/* Grid solo para fotos */
+.galeria .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  gap: 30px;
+}
+
+/* Títulos */
+.foto3d h4 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* Iframes */
+.foto3d iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  border-radius: 15px;
+}
+
+/* Planta biogàs ocupa todo */
+.foto3d.biogas {
+  grid-column: 1 / -1;
+}
+
+
+
+
+
+.titulo-principal {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.titulo-principal h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+}
+
+.titulo-principal p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Contenedor general */
+.contenedor-videos {
+    width: 90%;
+    margin: 40px auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 40px;
+}
+
+/* Tarjeta de cada video */
+.video-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.video-card h2 {
+    margin-bottom: 10px;
+}
+
+.descripcion {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+/* Mantener proporción 16:9 */
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+/* Encabezado */
+.gracias {
+    padding: 60px 20px;
+}
+
+.gracias h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.gracias p {
+    max-width: 800px;
+    margin: auto;
+    font-size: 18px;
+}
+
+/* Mapa */
+.mapa-seccion {
+    padding: 40px 20px;
+}
+
+.mapa-seccion h2 {
+    margin-bottom: 20px;
+}
+
+.mapa-wrapper {
+    width: 90%;
+    margin: auto;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.mapa-wrapper iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+}
+
+/* Redes sociales */
+.redes {
+    padding: 50px 20px;
+}
+
+.redes h2 {
+    margin-bottom: 25px;
+}
+
+.iconos-redes {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.iconos-redes a {
+    text-decoration: none;
+    background-color: #6fbe5f;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    transition: 0.3s ease;
+}
+
+.iconos-redes a:hover {
+    background-color: #2e7d32;
+}
+
+/* Footer */
+footer {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #6fbe5f;
+    color: white;
+}
