@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Minerales PoseNet</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/ml5@0.12.2/dist/ml5.min.js"></script>
+
+<link rel="icon" type="image/png" href="logo2.png">
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+}
+</style>
+
+</head>
+<body>
+<script>
+
+let video, poseNet, poses = [];
+
+let score = 0;
+let timer = 60;
+let running = false;
+
+let objects = [];
+let images = [];
+
+let musica;
+
+let wristRadius = 100;
+
+let startTime = 0;
+
+let urls = [
+  'carbon.png',
+  'cobre.png',
+  'hierro.png',
+  'oro.png',
+  'lapis.png',
+  'redstone.png',
+  'diamante.png',
+  'esmeralda.png'
+];
+
+function preload() {
+  for (let i = 0; i < urls.length; i++) {
+    images[i] = loadImage(urls[i]);
+  }
+
+  musica = loadSound('videoplayback.m4a');
+}
+
+function crearObjeto() {
+  return {
+    x: random(50, windowWidth - 50),
+    y: random(-200, -50),
+    speed: random(3, 5),
+    size: 70,
+    img: random(images)
+  };
+}
+
+function mirrorX(x) {
+  return width - x;
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  frameRate(30);
+
+  video = createCapture(VIDEO);
+  video.size(640, 480);
+  video.hide();
+
+  poseNet = ml5.poseNet(video);
+  poseNet.on('pose', results => poses = results);
+
+  for (let i = 0; i < 6; i++) {
+    objects.push(crearObjeto());
+  }
+}
+
+function draw() {
+
+  push();
+  translate(width, 0);
+  scale(-1, 1);
+  image(video, 0, 0, width, height);
+  pop();
+
+  if (!running) {
+    menu();
+    return;
+  }
+
+  game();
+}
+
+function menu() {
+  fill(0, 180);
+  rect(0, 0, width, height);
+
+  fill(255);
+  textAlign(CENTER);
+
+  if (timer > 0) {
+    textSize(40);
+    text("Joc Gim Jump", width/2, height/2);
+    textSize(20);
+    text("Pre l'espai per començar", width/2, height/2 + 50);
+  } else {
+    textSize(50);
+    text("FIN: " + score, width/2, height/2);
+  }
+}
+
+function game() {
+
+  if (frameCount % 70 === 0 && objects.length < 15) {
+    objects.push(crearObjeto());
+  }
+
+  if (poses.length > 0) {
+
+    let pose = poses[0].pose;
+
+    let lw = pose.keypoints.find(k => k.part === "leftWrist");
+    let rw = pose.keypoints.find(k => k.part === "rightWrist");
+
+    let scaleX = width / video.width;
+    let scaleY = height / video.height;
+
+    let lx = (lw && lw.score > 0.5) ? mirrorX(lw.position.x * scaleX) : null;
+    let ly = (lw && lw.score > 0.5) ? lw.position.y * scaleY : null;
+
+    let rx = (rw && rw.score > 0.5) ? mirrorX(rw.position.x * scaleX) : null;
+    let ry = (rw && rw.score > 0.5) ? rw.position.y * scaleY : null;
+
+    for (let i = objects.length - 1; i >= 0; i--) {
+
+      let o = objects[i];
+
+      let dificultad = 1 + (60 - timer) * 0.02;
+      o.y += o.speed * dificultad;
+
+      if (o.img) {
+        image(o.img, o.x, o.y, o.size, o.size);
+      }
+
+      if (o.y > height + 100) {
+        objects.splice(i, 1);
+        continue;
+      }
+
+      if (lx !== null && ly !== null &&
+          dist(o.x, o.y, lx, ly) < wristRadius + o.size/3) {
+        score++;
+        objects.splice(i, 1);
+        continue;
+      }
+
+      if (rx !== null && ry !== null &&
+          dist(o.x, o.y, rx, ry) < wristRadius + o.size/3) {
+        score++;
+        objects.splice(i, 1);
+        continue;
+      }
+    }
+
+    fill(0, 255, 0, 120);
+    noStroke();
+
+    if (lx !== null && ly !== null) ellipse(lx, ly, wristRadius * 2);
+    if (rx !== null && ry !== null) ellipse(rx, ry, wristRadius * 2);
+  }
+
+  fill(255);
+  textSize(30);
+  textAlign(LEFT);
+  text("Puntos: " + score, 40, 40);
+  text("Tiempo: " + timer, 40, 80);
+
+  let elapsed = (millis() - startTime) / 1000;
+  timer = max(0, 60 - floor(elapsed));
+
+  if (timer <= 0) {
+    running = false;
+
+    if (musica && musica.isPlaying()) {
+      musica.stop();
+    }
+  }
+}
+
+function keyPressed() {
+  if (key === ' ') {
+
+    userStartAudio();
+    
+    fullscreen(true);
+
+    score = 0;
+    timer = 60;
+    running = true;
+    objects = [];
+
+    startTime = millis();
+
+    if (musica && !musica.isPlaying()) {
+      musica.play();
+    }
+
+    for (let i = 0; i < 6; i++) {
+      objects.push(crearObjeto());
+    }
+
+    return false;
+  }
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+</script>
+</body>
+</html>
