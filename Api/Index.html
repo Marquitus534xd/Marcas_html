@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="Styile.css">
+  <link rel="icon" type="image/x-icon" href="fondoanime.png">
+  <title>Cercador d'Anime</title>
+</head>
+<body>
+
+  <h1>Cercador d'Anime</h1>
+
+  <div class="controls">
+    <input type="text" id="animeInput" placeholder="Nom de l'anime...">
+
+    <select id="year">
+      <option value="">Any</option>
+      <option>2026</option>
+      <option>2025</option>
+      <option>2024</option>
+      <option>2023</option>
+      <option>2022</option>
+      <option>2021</option>
+      <option>2020</option>
+      <option>2019</option>
+      <option>2010</option>
+      <option>2007</option>
+      <option>2005</option>
+      <option>2000</option>
+      <option>1998</option>
+    </select>
+
+    <select id="genre">
+      <option value="">Qualsevol gènere</option>
+      <option value="1">Acció</option>
+      <option value="2">Aventura</option>
+      <option value="4">Comèdia</option>
+      <option value="8">Drama</option>
+      <option value="10">Fantasia</option>
+      <option value="14">Terror</option>
+      <option value="22">Romanç</option>
+      <option value="24">Ciència-ficció</option>
+      <option value="36">Vida quotidiana</option>
+      <option value="37">Sobrenatural</option>
+    </select>
+
+    <button onclick="buscarAnime()">Cercar</button>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <script>
+    async function buscarAnime() {
+      const nombre = document.getElementById("animeInput").value;
+      const year = document.getElementById("year").value;
+      const genre = document.getElementById("genre").value;
+      const resultsDiv = document.getElementById("results");
+
+      resultsDiv.innerHTML = "Carregant...";
+
+      let url = "https://api.jikan.moe/v4/anime?sfw=true";
+      
+      if (nombre) {
+        url += `&q=${nombre}`;
+      }
+
+      if (genre) {
+        url += `&genres=${genre}`;
+      }
+
+
+      if (year) {
+        url += `&start_date=${year}-01-01&end_date=${year}-12-31&order_by=popularity`;
+      }
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!data.data || data.data.length === 0) {
+          resultsDiv.innerHTML = "No s'han trobat resultats per a aquesta cerca.";
+          return;
+        }
+
+        resultsDiv.innerHTML = "";
+
+        const htmlCards = data.data.map(anime => {
+          const maxGeneres = anime.genres ? anime.genres.slice(0, 2) : [];
+          const llistaGeneres = maxGeneres.length > 0 ? maxGeneres.map(g => g.name).join(', ') : 'S/G';
+          
+          const totsElsGeneres = anime.genres ? anime.genres.map(g => g.name).join(', ') : '';
+
+          return `
+            <div class="card">
+              <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
+              <div class="content">
+                <h3>${anime.title}</h3>
+                <div class="info">
+                  <span>⭐ ${anime.score || "N/A"}</span>
+                  <span>📅 ${anime.year || (anime.aired && anime.aired.prop.from.year) || "----"}</span>
+                  <span class="card-genres" title="${totsElsGeneres}">🏷️ ${llistaGeneres}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        resultsDiv.innerHTML = htmlCards;
+
+      } catch (error) {
+        resultsDiv.innerHTML = "Error en connectar amb l'API de Jikan.";
+        console.error(error);
+      }
+    }
+  </script>
+
+</body>
+</html>
